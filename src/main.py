@@ -1,13 +1,12 @@
 from textnode import TextNode, TextType
-from htmlnode import HTMLNode
+from htmlnode import HTMLNode, LeafNode
 
 
 print("hello world")
 
 def main():
-    test_object = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev)")
-    node = HTMLNode(props={})
-    print(node)
-    print(node.props_to_html())
+    test_object = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
+    print(test_object)
+    print(test_object.props_to_html())
 
 main()
