@@ -1,4 +1,3 @@
-from multiprocessing.dummy import Value
 class HTMLNode():
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
@@ -34,9 +33,11 @@ class LeafNode(HTMLNode):
             html = f"<{self.tag}>{self.value}</{self.tag}>"
         else:
             props_string = self.props_to_html()
-            print(props_string)
             html = f"<{self.tag}{props_string}>{self.value}</{self.tag}>"
         return html
+
+    def __repr__(self):
+        return f"LeafNode:\ntag={self.tag}\nvalue={self.value}\nchildren={self.children}\nprops={self.props}"
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):
@@ -52,3 +53,6 @@ class ParentNode(HTMLNode):
             children_html += child.to_html()
         html = f"<{self.tag}>{children_html}</{self.tag}>"
         return html
+
+    def __repr__(self):
+        return f"ParentNode:\ntag={self.tag}\nvalue={self.value}\nchildren={self.children}\nprops={self.props}"
